@@ -25,7 +25,7 @@ public class Frogger extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-		ScreenUtils.clear(0.5f,0.85f,1f, 0.1f);
+		ScreenUtils.clear(0f,0.1f,0.2f, 0.1f);
 		shape.begin(ShapeRenderer.ShapeType.Filled);
 		shape.setColor(0.9f, 0.4f, 1f, 1);
 		shape.rect(player.x, player.y, player.width, player.height);

@@ -10,12 +10,14 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.genspark2.frogger.laneTypes.Lane;
 
 import java.util.Arrays;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
 public class Frogger extends ApplicationAdapter {
 	SpriteBatch batch;
 	static ShapeRenderer shape;
 	static Rectangle player;
-	static Lane[] lanes;
+	static Stream<Lane> lanes;
 	public static final int gameWidth = 1200;
 	public static final int gameHeight = 800;
 	public static final int laneWidth = 40;
@@ -50,14 +52,18 @@ public class Frogger extends ApplicationAdapter {
 			if (player.y < yMin) player.y = yMin;
 		}
 	}
+
+	Function<Lane, Lane> setLane =  (lane) -> {
+		return Lane.setLaneType();
+	};
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		shape = new ShapeRenderer();
-		player = new Rectangle().set(gameWidth /2f - player.width / 2f, player.height / 2f,40, laneWidth);
-		lanes = (Lane[])Arrays.stream(new Lane[10]).map((lane -> Lane.setLaneType())).toArray();
-		System.out.println(Arrays.toString(lanes));
+		player = new Rectangle().set(gameWidth /2f - laneWidth / 2f, laneWidth / 2f,40, laneWidth);
+		lanes = Arrays.stream(new Lane[10]).map(setLane);
+		System.out.println(Arrays.toString(lanes.toArray()));
 	}
 
 	@Override

@@ -1,6 +1,12 @@
 package com.genspark2.frogger.laneTypes;
 
 public class Lane {
+
+    @Override
+    public String toString() {
+        return (this.getClass().getSimpleName());
+    }
+
     public static Lane setLaneType() {
         Lane randomLaneType = null;
         switch ((int)Math.floor(Math.random() * 5)) {

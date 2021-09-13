@@ -5,17 +5,18 @@ Final score is the sum of all the scores of each level * 10. Game Over if score 
 
 Player is a box.
 
-Obstacles to dodge: one-direction, pendulum, beam, lilypad
+Obstacles to dodge: one-direction, pendulum, beam
 one-direction{
-left/right, speed, frequency, size(choice of 3, can be random)
+direction, speed, frequency, size(choice of 3, can be random)
     types: 
         -dodge
         -platform {has coins that increase time left}
 }
 pendulum {
-speed, frequency, size(choice of 3, can be random
+speed, size(choice of 3, can be random)
 }
 beams {frequency, indicator}
+
 lilypad {random static platforms}
 
 wasd controls

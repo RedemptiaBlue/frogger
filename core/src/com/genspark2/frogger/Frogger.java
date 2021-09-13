@@ -7,13 +7,22 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.genspark2.frogger.laneTypes.Lane;
+
+import java.util.Arrays;
 
 public class Frogger extends ApplicationAdapter {
 	SpriteBatch batch;
 	static ShapeRenderer shape;
 	static Rectangle player;
+	static Lane[] lanes;
 	public static final int gameWidth = 1200;
 	public static final int gameHeight = 800;
+	public static final int laneWidth = 40;
+	public static final int yMin = laneWidth/2;
+	public static final int yMax = (int)(gameHeight - laneWidth * 1.5);
+	public static final int xMin = 0;
+	public static int xMax;
 
 	static void renderPlayer() {
 		shape.begin(ShapeRenderer.ShapeType.Filled);
@@ -25,19 +34,20 @@ public class Frogger extends ApplicationAdapter {
 	static void movePlayer() {
 		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
 			player.x -= 160 * Gdx.graphics.getDeltaTime();
-			if(player.x < 0) player.x = 0;
+			if(player.x < xMin) player.x = xMin;
 		}
 		else if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+			xMax = (int)(gameWidth - player.width);
 			player.x += 160 * Gdx.graphics.getDeltaTime();
-			if(player.x > gameWidth - player.width) player.x = gameWidth - player.width;
+			if(player.x > xMax) player.x = xMax;
 		}
 		if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
 			player.y += 60;
-			if (player.y > gameHeight - player.height) player.y = gameHeight - player.height * 1.5f;
+			if (player.y > yMax) player.y = yMax;
 		}
 		else if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
 			player.y -= 60;
-			if (player.y < 0) player.y = player.width / 2;
+			if (player.y < yMin) player.y = yMin;
 		}
 	}
 	
@@ -45,9 +55,9 @@ public class Frogger extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		shape = new ShapeRenderer();
-		player = new Rectangle();
-		player.setSize(40, 40);
-		player.setPosition(gameWidth /2 - player.width / 2, player.height / 2);
+		player = new Rectangle().set(gameWidth /2f - player.width / 2f, player.height / 2f,40, laneWidth);
+		lanes = (Lane[])Arrays.stream(new Lane[10]).map((lane -> Lane.setLaneType())).toArray();
+		System.out.println(Arrays.toString(lanes));
 	}
 
 	@Override

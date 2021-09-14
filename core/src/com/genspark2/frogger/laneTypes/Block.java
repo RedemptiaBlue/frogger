@@ -3,7 +3,7 @@ package com.genspark2.frogger.laneTypes;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static com.genspark2.frogger.Frogger.laneWidth;
+import static com.genspark2.frogger.GameScreen.laneWidth;
 
 public class Block extends Lane{
     protected int obstacleCount;

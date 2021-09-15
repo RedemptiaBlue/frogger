@@ -88,7 +88,6 @@ public class GameScreen implements Screen {
         movePlayerOnKeyPress();
         if (timeLeft < 1) {
             game.setScreen(new GameOverScreen(game));
-            dispose();
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             pause();

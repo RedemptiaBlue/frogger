@@ -38,8 +38,11 @@ public class Menu implements Screen {
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
         style.font = game.font;
 
+        TextButton itsAGame = new TextButton("It's a Game!", style);
+        itsAGame.setPosition(Frogger.gameWidth / 2 - itsAGame.getWidth() / 2, Frogger.gameHeight / 2);
+
         TextButton start = new TextButton("Start", style);
-        start.setPosition(Frogger.gameWidth / 2 - 100, Frogger.gameHeight / 2);
+        start.setPosition(Frogger.gameWidth / 2 - start.getWidth() / 2, Frogger.gameHeight / 2);
         start.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -48,7 +51,7 @@ public class Menu implements Screen {
         });
 
         TextButton exit = new TextButton("Exit", style);
-        exit.setPosition(Frogger.gameWidth / 2 - 100, Frogger.gameHeight / 2 - 50);
+        exit.setPosition(Frogger.gameWidth / 2 - exit.getWidth() / 2, Frogger.gameHeight / 2 - 50);
         exit.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -56,8 +59,10 @@ public class Menu implements Screen {
             }
 
         });
-
-        table.add(start).padRight(80);
+        table.add(itsAGame);
+        table.row().padTop(30);
+        table.add(start);
+        table.row();
         table.add(exit);
     }
 
@@ -69,9 +74,6 @@ public class Menu implements Screen {
     @Override
     public void render(float delta) {
         ScreenUtils.clear(.1f, .2f, .3f, .5f);
-        game.batch.begin();
-        game.font.draw(game.batch, "It's a Game! ", Frogger.gameWidth / 2 - 75, Frogger.gameHeight / 2 + 100);
-        game.batch.end();
         stage.draw();
     }
 

@@ -82,7 +82,7 @@ public class GameScreen implements Screen {
     public void render(float delta) {
         ScreenUtils.clear(.1f, .2f, .3f, .5f);
         game.batch.begin();
-        game.font.draw(game.batch, String.format("%d",timeLeft), Frogger.gameWidth - 50, Frogger.gameHeight - 50);
+        game.font.draw(game.batch, String.format("%d",timeLeft), Frogger.gameWidth - 100, Frogger.gameHeight - 50);
         game.batch.end();
         renderPlayer();
         movePlayerOnKeyPress();

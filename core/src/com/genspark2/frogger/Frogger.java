@@ -1,6 +1,7 @@
 package com.genspark2.frogger;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -17,6 +18,7 @@ public class Frogger extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
+		font.getData().setScale(2);
 		level = 1;
 		this.setScreen(new Menu(this));
 	}

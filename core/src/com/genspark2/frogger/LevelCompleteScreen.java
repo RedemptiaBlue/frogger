@@ -27,8 +27,6 @@ public class LevelCompleteScreen implements Screen {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             game.level += 1;
             game.setScreen(new GameScreen(game));
-
-            dispose();
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             game.level = 1;
